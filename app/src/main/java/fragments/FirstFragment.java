@@ -6,14 +6,18 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.e.fragments.R;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FirstFragment extends Fragment {
-
+public class FirstFragment extends Fragment implements View.OnClickListener {
+private EditText etFirst, etSecond;
+private Button btnCalc;
 
     public FirstFragment() {
         // Required empty public constructor
@@ -24,7 +28,22 @@ public class FirstFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_first, container, false);
+        View view = inflater.inflate(R.layout.fragment_first, container, false);
+
+        etFirst = view.findViewById(R.id.etFirst);
+        etSecond = view.findViewById(R.id.etSecond);
+        btnCalc = view.findViewById(R.id.btnCalc);
+        btnCalc.setOnClickListener(this);
+        return view;
     }
 
+
+    @Override
+    public void onClick(View v) {
+    int First = Integer.parseInt(etFirst.getText().toString());
+    int Second = Integer.parseInt(etSecond.getText().toString());
+    int Result = First + Second;
+
+        Toast.makeText(getActivity(), "Sum is: " + Result, Toast.LENGTH_LONG).show();
+    }
 }
